@@ -69,7 +69,6 @@ public class ListaDePessoas implements ColecaoPessoas {
         return -1;
     }
 
-
     @Override
     public void OrdenarLista(Ordenador ordenador) {
         //ordenador.ordenarPeloMetodoBolha(this);
@@ -78,7 +77,6 @@ public class ListaDePessoas implements ColecaoPessoas {
         ordenador.ordenarPeloMetodoQuickSort(this, 0, ObterTotalDePessoas() - 1);
         
     }
-
 
     @Override
     public void TrocarPosicoesEntreDuasPessoas(int primeiraPosicao, int segundaPosicao) {
@@ -89,13 +87,8 @@ public class ListaDePessoas implements ColecaoPessoas {
         
     }
 
- 
-
     @Override
     public void AlterarPessoa(int posicaoDaPessoa, Pessoa novaPessoa) {
         this.listaDePessoas.add(posicaoDaPessoa, novaPessoa);  
     }
-
-   
-    
 }

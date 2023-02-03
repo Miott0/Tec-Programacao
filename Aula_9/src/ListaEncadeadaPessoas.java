@@ -5,32 +5,45 @@ public class ListaEncadeadaPessoas implements ColecaoPessoas {
     No inicio = null;
 	int numeroDePessoas = 0;
 
+
+    /*
+        Aqui serve para adicionar a pessoa na estrutura de dados
+        o noAtual serve como um apontador, dizendo onde vai ser a posicao
+        que o proximo elemento add vai entrar.
+        Nesse caso ai acho que sempre vai add no final. Nao lembro bem. 
+    */
+
     @Override
     public void AdicionarPessoa(Pessoa pessoa) {
         No novoNo = new No(pessoa);
 		No noAtual = this.inicio;
-		if (this.inicio != null) {
-			while (noAtual.proximo != null) {
+
+		if (this.inicio != null) {              // Checa se ja existe algum elemento add
+			
+            while (noAtual.proximo != null) {  // Caso exista algum, o laco percorre ate encontrar o ultimo elemento da lista 
 				noAtual = noAtual.proximo;
 			}
-			noAtual.proximo = novoNo;
+			noAtual.proximo = novoNo; //aqui add no final do laco
 		} else {
-			this.inicio = novoNo;
+			this.inicio = novoNo; //aqui tambem add, mas so se nao entrar no laco 
 		}
 		numeroDePessoas++;
         
     }
 
-
+    /*
+        Obter elemento atraves passado a posicao que ele se encontra.
+        Faz um laco que vai repetir enquanto ainda existirem elentos 
+        e ate encontrar achar a posicao procurada.
+        Quando a lista acabar e posicao encontrada, retorna o elemento
+    */
     @Override
     public Pessoa ObterPessoa(int indicePessoa) {
         No noAtual = this.inicio;
-		No noAnterior = null;
 		int posicaoAtual = 0;
 		
 		if (this.inicio != null) {
 			while ((noAtual != null) && (indicePessoa != posicaoAtual)) {
-				noAnterior = noAtual;
 				noAtual = noAtual.proximo;
 				posicaoAtual++;
 			}
@@ -47,6 +60,11 @@ public class ListaEncadeadaPessoas implements ColecaoPessoas {
         return numeroDePessoas;
     }
 
+
+    /* 
+        Exlui o ulitmo elemento da lista
+        funciona como o de adicionar, so que no final ele exlcui
+     */
 
     @Override
     public boolean ExcluirPessoa() {
@@ -68,8 +86,15 @@ public class ListaEncadeadaPessoas implements ColecaoPessoas {
 		}
 		return false;
     }
-    @Override
 
+    /* 
+        Add o elemento na posicao desejada, passando o 
+        elemento e a posicao.
+
+        Cria um laco que que funcionara ate que a posicao desejada seja econtrada 
+        e add o elemento na posicao.
+     */
+    @Override
     public void IncluirPessoa(int indicePessoa, Pessoa pessoa) {
         No novoNo = new No(pessoa);
         No noAtual = this.inicio;
@@ -95,6 +120,9 @@ public class ListaEncadeadaPessoas implements ColecaoPessoas {
     }
 
 
+    /*
+     O mesmo que o de cima mas exlui
+     */
     @Override
     public boolean ExcluirPessoaPorPosicao(int indicePessoa) {
         No noAtual = this.inicio;
@@ -121,17 +149,20 @@ public class ListaEncadeadaPessoas implements ColecaoPessoas {
         return false;
     }
     
+
+    /*
+        Faz uma busca pela lista atras do elemento, onde usa o nome 
+        como parametro de busca 
+     */
     @Override
     public int BuscaPessoa(String n) {
         No noAtual = this.inicio;
-        No noAnterior = null;
         int posicaoAtual = 0;
         while ((noAtual != null)) {
-            noAnterior = noAtual;
-            noAtual = noAtual.proximo;
-            if(n.equals(noAnterior.dado.getNome())){                   
+            if(n.equals(noAtual.dado.getNome())){                   
                 return posicaoAtual;
             }
+            noAtual = noAtual.proximo;
             posicaoAtual++;
             }
         return -1;
