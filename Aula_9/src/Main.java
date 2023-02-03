@@ -1,7 +1,6 @@
 package src;
 import java.io.*;
 import java.util.Scanner;
-
 import src.ListaDePessoas;
 import src.ColecaoPessoas;
 import src.Pessoa;
